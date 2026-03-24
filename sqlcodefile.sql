@@ -54,15 +54,53 @@ from [property24].[dbo].[property24_v1]
 
 
 --11. What is the total value of all properties combined?
+select sum(cast(property_price as BIGINT)) as Total_Properties_Value
+from [property24].[dbo].[property24_v1]
+
 --12. What is the total property value per province?
+select province, sum(cast(property_price as BIGINT)) as Total_Properties_Value
+from [property24].[dbo].[property24_v1]
+group by province
+
 --13. What is the total property value per city?
+select city, sum(cast(property_price as BIGINT)) as Total_Properties_Value
+from [property24].[dbo].[property24_v1]
+group by city
+
 --14. What is the total monthly repayment for all properties?
+select sum(cast(monthly_repayment as BIGINT)) as Total_Monthly_Repayment
+from [property24].[dbo].[property24_v1]
+
 --15. What is the total monthly repayment per province?
+select province, sum(cast(monthly_repayment as BIGINT)) as Total_Monthly_Repayment
+from [property24].[dbo].[property24_v1]
+group by province
+order by Total_Monthly_Repayment desc;
+
 --16. What is the total once-off cost for all properties?
+select sum(cast(total_once_off_costs as BIGINT)) as Total_Once_Off_Costs
+from [property24].[dbo].[property24_v1]
+
 --17. What is the total once-off cost per province?
+select province, sum(cast(total_once_off_costs as BIGINT)) as Total_Once_Off_Costs
+from [property24].[dbo].[property24_v1]
+group by province
+
 --18. What is the total property value for Gauteng?
+select sum(cast(property_price as BIGINT)) as Total_Properties_Value
+from [property24].[dbo].[property24_v1]
+where province ='gauteng'
+
 --19. What is the total property value for properties priced above R4,000,000?
+select sum(cast(property_price as BIGINT)) as Total_Properties_Value
+from [property24].[dbo].[property24_v1]
+where property_price > 4000000
+
 --20. What is the total minimum gross monthly income required per province?
+select province, sum(cast(min_gross_monthly_income as BIGINT)) as Total_Minimum_Gross_Monthly_Income
+from [property24].[dbo].[property24_v1]
+group by province
+
 --SECTION 3 – AVG Aggregations (10 Questions)
 --21. What is the average property price overall?
 --22. What is the average property price per province?
